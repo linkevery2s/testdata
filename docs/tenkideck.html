@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>令和2年九州豪雨を可視化しました。</title>
+
+  <meta property="og:url" content="https://dpnote.netlify.app/simulation/r27mkyusyu.html">
+  <meta property="og:title" content="令和2年九州豪雨を可視化しました。" />
+  <meta property="og:description" content="令和2年九州豪雨を可視化しました。" />
+  <meta property="og:image" content="https://dpnote.netlify.app/simulation/r27mkyusyu.png" />
+  <meta property="og:image:type" content="image/png" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="令和2年九州豪雨を可視化しました。">
+  <meta name="twitter:description" content="令和2年九州豪雨を可視化しました。">
+  <meta name="twitter:image" content="https://dpnote.netlify.app/simulation/r27mkyusyu.png" />
+  <script src="https://unpkg.com/deck.gl@^8.0.0/dist.min.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-202486341-1');
+  </script>
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .deck-tooltip {
+      font-family: Helvetica, Arial, sans-serif;
+      padding: 8px !important;
+      color: #fff !important;
+      background: #192f60 !important;
+      max-width: 110px;
+      font-size: .8em;
+      opacity: 0.8;
+    }
+
+    .attribution {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      z-index: 9;
+      padding: 2px 4px;
+      background-color: rgba(255, 255, 255, 0.5);
+      font-size: 11px;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="attribution">
+    © <a href="http://www.openstreetmap.org/about/" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors、<a href="https://www.data.jma.go.jp/obd/stats/etrn/" target="_blank">気象データ</a>、気象庁：<a
+      href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank">CC BY 4.0</a>
+  </div>
+
+</body>
+
+<script type="text/javascript">
+  const {
+    Deck,
+    TileLayer,
+    BitmapLayer,
+    HexagonLayer
+  } = deck;
+
+
+
+  const mtvLayer = new deck.MVTLayer({
+    id: 'plateau-building-mtv',
+    data: `https://indigo-lab.github.io/plateau-tokyo23ku-building-mvt-2020/{z}/{x}/{y}.pbf`,
+    minZoom: 0,
+    maxZoom: 23,
+    getFillColor: [0, 255, 0, 255],
+    lineWidthMinPixels: 1,
+    pickable: true,
+    extruded: true,
+    //押出をonにする
+    autoHighlight: true,
+    highlightColor: [255, 0, 0],
+    getElevation: d => d.properties.measuredHeight,
+    wireframe: true,
+    //lineを有効にする
+    lineWidthMinPixels: 1,
+    getLineColor: [0, 0, 0],
+    material: {
+      //立体ポリゴンのマテリアルを設定
+      ambient: 0.1,
+      diffuse: 0.9,
+      shininess: 32,
+      specularColor: [30, 30, 30]
+    }
+  });
+
+
+  const tooltip = (d) => {
+
+    if (!d || !d.object) return null;
+    let obj = d.object;
+
+    const html_tr = ["<table>", "降水量：" + obj.colorValue + "mm", "</table>"].join("\n");
+
+    return {
+      html: html_tr
+    };
+  };
+
+  new Deck({
+    initialViewState: {
+      longitude: 130.12,
+      latitude: 32.551,
+      zoom: 4.8,
+      maxZoom: 20,
+      pitch: 40,
+      bearing: -10
+    },
+    controller: {
+      touchRotate: true
+    },
+    layers: [
+      mtvLayer
+    ],
+    getTooltip: tooltip
+  });
+</script>
+
+</html>
