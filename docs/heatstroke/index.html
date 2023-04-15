@@ -18,7 +18,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 	<style>
-		html,body,#map{
+		body,#map{
 			width: 100%;
 			height: 100%;
 			padding: 0;
@@ -26,10 +26,35 @@
 			z-index: 0;
 		}
 
+		html{
+			padding: 0;
+			margin: 0;
+			width: 100%;
+			height: calc(99% - 25px);
+			background: #000;
+		}
+
+		#footer{
+			height: 25px;
+			background: #000;
+			width: 100%;
+			color: #fff;
+			padding: 0;
+			margin: 0;
+		}
+
+		#footer a{
+			border-bottom: 1px dotted #fff;
+		}
+
 		#navigation_menu{
 			position: fixed;
 			z-index: 20;
 
+		}
+
+		#menu{
+			z-index: 20;
 		}
 
 		#navigation_menu:before {
@@ -65,7 +90,22 @@
 </head>
 <body>
 
+	<div id="menu" class="fixed top-0 mt-4 left-1/2 -translate-x-1/2">
+
+<select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+  <option selected>Choose a country</option>
+  <option value="US">United States</option>
+  <option value="CA">Canada</option>
+  <option value="FR">France</option>
+  <option value="DE">Germany</option>
+</select>
+
+	</div>
 	<div id="map"></div>
+
+	<div id="footer">
+		<p class="p-2 text-center text-xs">Copyright © 仁志, <a href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank">CC BY 4.0</a></p>
+	</div>
 
 
 	<a href="javascript:void(0)" onClick="display()"><div id="navigation_menu" class="bg-gray-500 hover:bg-gray-300 py-2 px-3 bg-opacity-50 text-white top-0 right-0 mt-4 mr-4"></div></a>
@@ -86,6 +126,8 @@
 
 	</div>
 
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v16.0" nonce="bdtaksSP"></script>
 	
 </body>
 </html>
