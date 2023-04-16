@@ -30,11 +30,11 @@
 			padding: 0;
 			margin: 0;
 			width: 100%;
-			height: calc(99% - 25px);
+			height: 100%;
 			background: #000;
 		}
 
-		#footer{
+/*		#footer{
 			height: 25px;
 			background: #000;
 			width: 100%;
@@ -46,6 +46,7 @@
 		#footer a{
 			border-bottom: 1px dotted #fff;
 		}
+*/
 
 		#navigation_menu{
 			position: fixed;
@@ -79,7 +80,7 @@
 
 			const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 19,
-				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; 仁志, <a href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank">CC BY 4.0</a>'
 			}).addTo(map);
 
 		}
@@ -103,11 +104,6 @@
 	</div>
 	<div id="map"></div>
 
-	<div id="footer">
-		<p class="p-2 text-center text-xs">Copyright © 仁志, <a href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank">CC BY 4.0</a></p>
-	</div>
-
-
 	<a href="javascript:void(0)" onClick="display()"><div id="navigation_menu" class="bg-gray-500 hover:bg-gray-300 py-2 px-3 bg-opacity-50 text-white top-0 right-0 mt-4 mr-4"></div></a>
 
 	<!-- modal window -->
@@ -126,8 +122,5 @@
 
 	</div>
 
-	<div id="fb-root"></div>
-	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v16.0" nonce="bdtaksSP"></script>
-	
 </body>
 </html>
