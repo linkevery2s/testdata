@@ -5,11 +5,11 @@
 	<meta name="description" content='スプレッドシートとleafletの連携テストです。'>
 	<meta property="og:title" content="スプレッドシートとleafletの連携テスト" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="https://linkevery2s.github.io/bsinsight/map/img/hinantop.jpg" />
+	<meta property="og:image" content="" />
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="スプレッドシートとleafletの連携テスト" />
 	<meta name="twitter:description" content='スプレッドシートとleafletの連携テストです。' />
-	<meta name="twitter:image" content="https://linkevery2s.github.io/bsinsight/map/img/hinantop.jpg" />
+	<meta name="twitter:image" content="" />
 	<meta name="author" content="仁志"><meta name="keywords" content="leaflet, GoogleAppsScript, gis">
 
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
@@ -25,73 +25,83 @@
 	<link href="./dist/leaflet.awesome-markers.css" rel="stylesheet">
 -->
 
-	<style>
+<style>
 
-		html, body, #map{
-			width: 100%;
-			height: 100%;
-			padding: 0;
-			margin: 0;
-		}
+	html, body, #map{
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		margin: 0;
+	}
 
-	</style>
+</style>
 
-	<title>スプレッドシートとleafletの連携テスト</title>
+<title>スプレッドシートとleafletの連携テスト</title>
 
-	<script type="module">
+<script type="module">
 
-		onload = async () => {
+	onload = async () => {
 
-			const map = L.map('map').setView([35.6, 137], 8);
+		const map = L.map('map').setView([35.6, 137], 8);
 
-			const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				maxZoom: 19,
-				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-			}).addTo(map);
+		const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 19,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+		}).addTo(map);
 
-			const res = await fetch("https://script.google.com/macros/s/AKfycbzUwQxvPn0F-7Y9QCbOCKft3XgMDyp-DBG-en_kYLm_Sgk_cRxOPch5xjRRhZmo7GzT/exec");
-			const data = await res.json();
+		const res = await fetch("https://script.google.com/macros/s/AKfycbzUwQxvPn0F-7Y9QCbOCKft3XgMDyp-DBG-en_kYLm_Sgk_cRxOPch5xjRRhZmo7GzT/exec");
+		const data = await res.json();
 
-			let pref= L.geoJSON(data,{onEachFeature: popup_pin}).addTo(map);
+		let pref= L.geoJSON(data,{onEachFeature: popup_pin}).addTo(map);
 
 			/* clustergroup add */
-			let markers = L.markerClusterGroup({disableClusteringAtZoom: 13});
-			markers.addLayer(pref);
-			map.addLayer(markers);
+		let markers = L.markerClusterGroup({disableClusteringAtZoom: 13});
+		markers.addLayer(pref);
+		map.addLayer(markers);
 
 			/*L.marker([36, 136], {icon: L.AwesomeMarkers.icon({icon: 'home', prefix: 'fa', markerColor: 'red', iconColor: '#fff'}) }).addTo(map);*/
 
-		}
+	}
 
 		/* popup display */
-		let popup_pin = (feature, layer) => {
-			let popup;
-			if (feature.properties && feature.properties.place) {
-				popup = "施設名：" + feature.properties.place;
-				popup += "<br>" + feature.properties.overview;
-				popup += "<img src='https://drive.google.com/uc?export=view&id=" + feature.properties.photo + "' width='100%'>";
-				popup += "<br><a href='" + feature.properties.url +  " target='_blank'>url</a>"; 
-			}else{};
+	let popup_pin = (feature, layer) => {
+		let popup;
+		if (feature.properties && feature.properties.place) {
+			popup = "施設名：" + feature.properties.place;
 
-			layer.bindPopup(popup);
-		}
+			if(feature.properties.overview != ""){
+				popup += "<br>" + feature.properties.overview;
+			}else{}
+
+			if(feature.properties.photo != ""){
+				popup += "<img src='https://drive.google.com/uc?export=view&id=" + feature.properties.photo + "' width='100%'>";
+			}else{}
+
+			if(feature.properties.url != ""){
+				popup += "<br><a href='" + feature.properties.url +  " target='_blank'>url</a>"; 
+			}else{}
+
+		}else{};
+
+		layer.bindPopup(popup);
+	}
 
 
 		/* circle marker */
-		let iro = (feature, latlng) => {
+	let iro = (feature, latlng) => {
 
-			console.log(feature.properties.name);
-			return L.circleMarker(latlng, {
-				radius: 10,
-				fillColor: "#2EFE2E",
-				color: "#000",
-				weight: 1,
-				opacity: 1,
-				fillOpacity: 0.8
-			});
-		}
+		console.log(feature.properties.name);
+		return L.circleMarker(latlng, {
+			radius: 10,
+			fillColor: "#2EFE2E",
+			color: "#000",
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+		});
+	}
 
-	</script>
+</script>
 
 </head>
 <body>
