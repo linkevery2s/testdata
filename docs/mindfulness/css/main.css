@@ -1,0 +1,9 @@
+body{
+	font-family: "Meiryo", "Hiragino Maru Gothic Pro", sans-serif;
+
+}
+
+#container{
+	width: 100%;
+	max-width: 600px;
+}
