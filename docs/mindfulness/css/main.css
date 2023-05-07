@@ -7,3 +7,46 @@ body{
 	width: 100%;
 	max-width: 600px;
 }
+
+#calendar::before{
+  font-family: "Font Awesome 6 Free";
+  content: '\f073';
+  font-weight: 400;
+  margin-right: 8px;
+}
+
+#app::before{
+  font-family: "Font Awesome 6 Free";
+  content: '\f2d2';
+  font-weight: 400;
+  margin-right: 8px;
+}
+
+#install::before{
+  font-family: "Font Awesome 6 Free";
+  content: '\f328';
+  font-weight: 400;
+  margin-right: 8px;
+}
+
+#data::before{
+  font-family: "Font Awesome 6 Free";
+  content: '\f0eb';
+  font-weight: 400;
+  margin-right: 8px;
+}
+
+#bookmark::before{
+  font-family: "Font Awesome 6 Free";
+  content: '\f02e';
+  font-weight: 400;
+  margin-right: 8px;
+}
+
+.subtext{
+	color: #afafb0;
+}
+
+#footer a{
+	color: #ffec47;
+}
