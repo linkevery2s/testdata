@@ -48,9 +48,9 @@
 		const res = await fetch("https://script.google.com/macros/s/" + id + "/exec");
 		const data = await res.json();
 
-		let pref= L.geoJSON(data,{onEachFeature: popup_pin}).addTo(map);
+		let pref= L.geoJSON(data,{onEachFeature: popup_pin, pointToLayer: iro}).addTo(map);
 
-		/* clustergroup add */
+		/* Clustergroup Add */
 		let markers = L.markerClusterGroup({disableClusteringAtZoom: 13});
 		markers.addLayer(pref);
 		map.addLayer(markers);
@@ -59,7 +59,7 @@
 
 	}
 
-		/* popup display */
+	/* Popup Display */
 	let popup_pin = (feature, layer) => {
 		let popup;
 		if (feature.properties && feature.properties.place) {
@@ -83,17 +83,16 @@
 	}
 
 
-		/* circle marker */
+	/* Circle Marker */
 	let iro = (feature, latlng) => {
 
-		console.log(feature.properties.name);
 		return L.circleMarker(latlng, {
 			radius: 10,
-			fillColor: "#2EFE2E",
-			color: "#000",
-			weight: 1,
+			fillColor: "#0000FF",
+			color: "#FFFFFF",
+			weight: 2,
 			opacity: 1,
-			fillOpacity: 0.8
+			fillOpacity: 1
 		});
 	}
 
