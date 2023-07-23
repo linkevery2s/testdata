@@ -1,0 +1,1 @@
+{"features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": ["100", "100"]}, "properties": {"id": "1", "name": "Tokyo"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["200", "200"]}, "properties": {"id": "2", "name": "Osaka"}}]}
