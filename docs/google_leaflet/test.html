@@ -2,14 +2,14 @@
 <html lang='ja'>
 <head>
 	<meta charset='UTF-8' name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
-	<meta name="author" content="仁志">
+	<meta name="author" content="">
 	<meta name="keywords" content="leaflet, GoogleAppsScript, gis">	
-	<meta name="description" content='スプレッドシートとleafletの連携テストです。'>
-	<meta property="og:title" content="スプレッドシートとleafletの連携テスト" />
+	<meta name="description" content='情報共有マップのオープンソースです。Googleフォームで投稿した情報がWEBマップに表示されます。'>
+	<meta property="og:title" content="情報共有マップ" />
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="" />
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="スプレッドシートとleafletの連携テスト" />
+	<meta name="twitter:title" content="情報共有マップ" />
 	<meta name="twitter:image" content="" />
 
 	<!-- leaflet -->
@@ -31,7 +31,7 @@
 
 	</style>
 
-	<title>スプレッドシートとleafletの連携テスト</title>
+	<title>情報共有マップ</title>
 
 	<script type="module">
 
@@ -43,10 +43,10 @@
 
 			const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 19,
-				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>｜<a href="https://github.com/linkevery2s/sharing_information_map" target="_blank">Github</a>'
 			}).addTo(map);
 
-			const id = "AKfycbxpCn3QXNMXrY__QFWMx-HAUhBFx9Q-Bd2hlkWpfM2kK_FU0M2GCTbp3tdVWjeGldiq";
+			const id = "AKfycbxnQicx6g7m1_KnX1ow2JeKBopSnlqi-gB4d7vFUwguqmzgw8zpqBtDcn7N_7_vxA0";
 
 			const res = await fetch("https://script.google.com/macros/s/" + id + "/exec");
 			const data = await res.json();
@@ -62,22 +62,22 @@
 
 		}
 
-	/* Popup Display */
+		/* Popup Display */
 		let popup_pin = (feature, layer) => {
 			let popup;
-			if (feature.properties && feature.properties.place) {
-				popup = "施設名：" + feature.properties.place;
+			if (feature.properties && feature.properties.name) {
+				popup = "件名：" + feature.properties.name;
 
 				if(feature.properties.overview != ""){
-					popup += "<br>" + feature.properties.overview;
+					popup += "<br>概要：" + feature.properties.overview;
 				}else{}
 
 				if(feature.properties.photo != ""){
-					popup += "<img src='https://drive.google.com/uc?export=view&id=" + feature.properties.photo + "' width='100%'>";
+					popup += "<br><img src='https://drive.google.com/uc?export=view&id=" + feature.properties.photo + "' onerror='this.remove()' width='100%'>";
 				}else{}
 
-				if(feature.properties.url != ""){
-					popup += "<br><a href='" + feature.properties.url +  " target='_blank'>url</a>"; 
+				if(feature.properties.timestamp != ""){
+					popup += "<br>" + feature.properties.timestamp; 
 				}else{}
 
 			}else{};
