@@ -15,15 +15,15 @@
   arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
   >
 
-  <a-entity gps-entity-place="latitude: 35.35; longitude: 136.78093;" position="0 0 0" scale="10000 10000 10000" look-at="[gps-camera]" gltf-model="./moon.gltf"></a-entity>
+  <a-entity gps-entity-place="latitude: 35.35; longitude: 136.78093;" position="0 0 0" scale="10000 10000 10000" look-at="[gps-camera]" gltf-model="https://raw.githubusercontent.com/linkevery2s/testdata/main/docs/ar/moon.gltf"></a-entity>
 
-  <a-entity gps-entity-place="latitude: 35.35; longitude: 136.78093;" position="0 0 0" scale="10000 10000 10000" look-at="[gps-camera]" gltf-model="./earth.gltf"></a-entity>
+  <a-entity gps-entity-place="latitude: 35.35; longitude: 136.78093;" position="0 0 0" scale="10000 10000 10000" look-at="[gps-camera]" gltf-model="https://raw.githubusercontent.com/linkevery2s/testdata/main/docs/ar/earth.gltf"></a-entity>
   
   <a-text
   value="This content will always face you." position="0 0 0"
   look-at="[gps-camera]"
   scale="100 100 100"
-  gps-entity-place="latitude: 35.3; longitude: 136.78093;"
+  gps-entity-place="latitude: 35.35; longitude: 136.78093;"
   ></a-text>
   <a-camera gps-camera rotation-reader> </a-camera>
 </a-scene>
