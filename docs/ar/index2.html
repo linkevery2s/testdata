@@ -10,7 +10,7 @@
   <script ="module">
     
     onload = async () => {
-      document.querySelector("a-scene").renderer.gammaOutput=true;
+      document.querySelector("a-scene").renderer.gammaOutput = true;
     }
 
   </script>
@@ -22,15 +22,16 @@
   arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
   >
 
-  <a-entity gps-entity-place="latitude: 35.34157; longitude: 136.78114;" position="0 500 0" scale="0.3 0.3 0.3" look-at="[gps-camera]" gltf-model="https://raw.githubusercontent.com/linkevery2s/testdata/main/docs/ar/moon.glb"></a-entity>
+  <a-entity gps-entity-place="latitude: 35.33; longitude: 136.78114;" position="0 500 0" scale="0.3 0.3 0.3" look-at="[gps-camera]" gltf-model="https://raw.githubusercontent.com/linkevery2s/testdata/main/docs/ar/moon.glb"></a-entity>
 
    
-  <a-text
+  <!--<a-text
   value="This content will always face you." position="0 0 0"
   look-at="[gps-camera]"
   scale="100 100 100"
   gps-entity-place="latitude: 35.35; longitude: 136.781;"
-  ></a-text>
+  ></a-text>-->
+
   <a-camera gps-camera rotation-reader> </a-camera>
 </a-scene>
 </body>
