@@ -1,0 +1,6 @@
+const data = [
+  {
+    "id": "公式",
+    "math": "c = \\pm\\sqrt{a^2 + b^2}"
+  }
+];
