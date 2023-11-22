@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>PLATEAUのテスト</title>
+
+  <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+  <script src="https://unpkg.com/@loaders.gl/3d-tiles@^2.3.0/dist/dist.min.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+  <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet"></link>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPP84V2NHB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-MPP84V2NHB');
+  </script>
+
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .deck-tooltip {
+      font-family: Helvetica, Arial, sans-serif;
+      padding: 8px !important;
+      color: #fff !important;
+      background: #192f60 !important;
+      max-width: 110px;
+      font-size: .8em;
+      opacity: 0.8;
+    }
+
+    .attribution {
+      position: absolute;
+      bottom: 20px;
+      right: 0;
+      z-index: 9;
+      padding: 2px 4px;
+      background-color: rgba(255, 255, 255, 0.5);
+      font-size: 11px;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="attribution">
+    © <a href="https://github.com/Project-PLATEAU/plateau-streaming-tutorial/blob/main/3d-tiles/plateau-3dtiles-streaming.md" target="_blank">PLATEAU</a>、国土交通省
+  </div>
+
+</body>
+
+<script type="module">
+
+  import { Vector3 } from 'https://cdn.jsdelivr.net/npm/math.gl@4.0.0/+esm';
+
+  onload = async () =>{
+
+    const {DeckGL,Tile3DLayer, TileLayer, BitmapLayer} = deck;
+
+    const layer1 = new Tile3DLayer({
+      id: 'tile3dlayer1',
+      pointSize: 1,
+      data: 'https://assets.cms.plateau.reearth.io/assets/cb/1ca1d1-148d-4d34-a70b-d3ef033e0c3a/23100_nagoya-shi_2021_3dtiles_2_op_bldg_23105_nakamura-ku_lod1/tileset.json',
+      loader: Tiles3DLoader,
+      onTilesetLoad: (tileset) => {
+        const { cartographicCenter } = tileset;
+        const [longitude, latitude] = cartographicCenter;
+      },
+      onTileLoad: (tileHeader) => {
+        tileHeader.content.cartographicOrigin = new Vector3(
+          tileHeader.content.cartographicOrigin.x,
+          tileHeader.content.cartographicOrigin.y,
+          tileHeader.content.cartographicOrigin.z - 40,
+          );
+      },
+    });
+
+    const layer2 = new Tile3DLayer({
+      id: 'tile3dlayer2',
+      pointSize: 1,
+      data: 'https://assets.cms.plateau.reearth.io/assets/0a/4267f9-59d7-4fec-939d-2c03a4147231/23100_nagoya-shi_2021_3dtiles_2_op_bldg_23109_atsuta-ku_lod1/tileset.json',
+      loader: Tiles3DLoader,
+      onTilesetLoad: (tileset) => {
+        const { cartographicCenter } = tileset;
+        const [longitude, latitude] = cartographicCenter;
+      },
+      onTileLoad: (tileHeader) => {
+        tileHeader.content.cartographicOrigin = new Vector3(
+          tileHeader.content.cartographicOrigin.x,
+          tileHeader.content.cartographicOrigin.y,
+          tileHeader.content.cartographicOrigin.z - 40,
+          );
+      },
+    });
+
+    const layer3 = new Tile3DLayer({
+      id: 'tile3dlayer3',
+      pointSize: 1,
+      data: 'https://assets.cms.plateau.reearth.io/assets/e0/0a6561-ca28-4b8b-a6bd-418bcab1c9c8/23100_nagoya-shi_2021_3dtiles_2_op_bldg_23110_nakagawa-ku_lod1/tileset.json',
+      loader: Tiles3DLoader,
+      onTilesetLoad: (tileset) => {
+        const { cartographicCenter } = tileset;
+        const [longitude, latitude] = cartographicCenter;
+      },
+      onTileLoad: (tileHeader) => {
+        tileHeader.content.cartographicOrigin = new Vector3(
+          tileHeader.content.cartographicOrigin.x,
+          tileHeader.content.cartographicOrigin.y,
+          tileHeader.content.cartographicOrigin.z - 40,
+          );
+      },
+    });
+
+    const layer4 = new Tile3DLayer({
+      id: 'tile3dlayer4',
+      pointSize: 1,
+      data: 'https://assets.cms.plateau.reearth.io/assets/71/654b8d-8a66-4b5a-a06e-b3f2c9207780/23100_nagoya-shi_2021_3dtiles_2_op_bldg_23104_nishi-ku_lod1/tileset.json',
+      loader: Tiles3DLoader,
+      onTilesetLoad: (tileset) => {
+        const { cartographicCenter } = tileset;
+        const [longitude, latitude] = cartographicCenter;
+      },
+      onTileLoad: (tileHeader) => {
+        tileHeader.content.cartographicOrigin = new Vector3(
+          tileHeader.content.cartographicOrigin.x,
+          tileHeader.content.cartographicOrigin.y,
+          tileHeader.content.cartographicOrigin.z - 40,
+          );
+      },
+    });
+
+    const tilelayer = new TileLayer({
+          // https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Tile_servers
+      data: 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin_pref_data/23/{z}/{x}/{y}.png',
+      opacity: 0.3,
+      minZoom: 0,
+      maxZoom: 19,
+
+      renderSubLayers: props => {
+        const {
+          bbox: {west, south, east, north}
+        } = props.tile;
+
+        return new BitmapLayer(props, {
+          data: null,
+          image: props.data,
+          bounds: [west, south, east, north]
+        });
+      }
+    });
+
+
+    new DeckGL({
+      mapStyle: 'https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json',
+      initialViewState: {
+        longitude: 136.8842,
+        latitude: 35.1690,
+        zoom: 13,
+        maxZoom: 20,
+        pitch: 40,
+        bearing: -10
+      },
+      controller: true,
+      layers: [layer1, layer2, layer3, layer4, tilelayer]
+    });
+
+  }
+</script>
+
+</html>
