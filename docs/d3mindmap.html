@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mind Map with Circle and Text using D3.js</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+
+  <script>
+    // マインドマップのデータ
+    const data = {
+      nodes: [
+        { id: 1, label: "Main Topic" },
+        { id: 2, label: "Subtopic 1" },
+        { id: 3, label: "Subtopic 2" }
+      ],
+      links: [
+        { source: 1, target: 2, url: "https://example.com" },
+        { source: 1, target: 3 }
+      ]
+    };
+
+
+    // SVG要素の作成
+    const svg = d3.select("body").append("svg")
+      .attr("width", 400)
+      .attr("height", 200);
+
+    // グループ要素の作成
+    const g = svg.append("g");
+
+    // ノードを描画
+    const nodes = g.selectAll("g.node")
+      .data(data.nodes)
+      .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", (d) => `translate(${d.id * 90}, ${d.id === 3 ? 150 : 100})`);
+
+    // 円を描画
+    nodes.append("circle")
+      .attr("r", 10)
+      .attr("cx", 0)
+      .attr("cy", 0)
+      .style("fill", "#98abc5");
+
+    // ラベルを描画
+    nodes.append("text")
+      .attr("text-anchor", "middle")
+      .attr("dy", (d) => d.id === 1 ? 30 : (d.id === 2 ? -15 : (d.id === 3 ? -25 : null)))
+      .text((d) => d.label);
+
+    // エッジを描画
+    const links = g.selectAll("path")
+      .data(data.links)
+      .enter().append("path")
+      .attr("d", (d) => {
+        const sourceX = data.nodes.find(node => node.id === d.source).id * 90;
+        const sourceY = data.nodes.find(node => node.id === d.source).id === 3 ? 150 : 100;
+        const targetX = data.nodes.find(node => node.id === d.target).id * 90;
+        const targetY = data.nodes.find(node => node.id === d.target).id === 3 ? 150 : 100;
+
+        // 曲線を生成する
+        return `M${sourceX},${sourceY} C${sourceX},${(sourceY + targetY) / 2} ${targetX},${(sourceY + targetY) / 2} ${targetX},${targetY}`;
+      })
+      .style("stroke", "#000")
+      .style("fill", "none");
+
+  </script>
+
+</body>
+
+</html>
