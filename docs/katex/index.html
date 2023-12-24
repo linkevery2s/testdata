@@ -1,32 +1,62 @@
 <!DOCTYPE HTML>
 <html lang="ja">
 <title>katex test</title>
+
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
+  <meta charset="UTF-8" name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+    integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
 
   <!-- The loading of KaTeX is deferred to speed up page rendering -->
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+    integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
+    crossorigin="anonymous"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"
+    integrity="sha384-ifpG+NlgMq0kvOSGqGQxW1mJKpjjMDmZdpKGq3tbvD3WPhyshCEEYClriK/wRVU0"
+    crossorigin="anonymous"></script>
 
   <!-- To automatically render math in text elements, include the auto-render extension: -->
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
-  onload="renderMathInElement(document.body);"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+    crossorigin="anonymous"></script>
 
-  <script src="./test.json"></script>
-<script>
+    <!-- $などで囲うために必要 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "\\[", right: "\\]", display: true },
+          { left: "$", right: "$", display: false }
+        ]
+      });
+    });
+  </script>
 
-  window.onload = () =>{
+  <script src="test.json"></script>
+  <script>
 
-    let element = document.querySelector(".katex");
+    window.onload = () => {
 
-    console.log(data[0].math);
+      let element = document.querySelector(".katex");
 
-    katex.render(data[0].math, element, {throwOnError: false});
+      console.log(data[0].math);
 
-  };
-  
-</script>
+      // katex.render(data[0].math, element, { throwOnError: false });
+
+      katex.render("c = \\pm\\sqrt{a^2 + b^2}", element, { throwOnError: false });
+
+      let ele = document.querySelector("#kagaku");
+
+      katex.render("\\ce{CO2 + C -> 2 CO}", ele, { throwOnError: false });
+
+      // katex.render("\\ce{" + "CO2 + C -> 2 CO" + "}", ele, { throwOnError: false });
+
+    };
+
+  </script>
 
 </head>
 
@@ -34,6 +64,28 @@
 
   <span class="katex"></span>
 
+  <br><br>
+
+  $
+  \begin{pmatrix}
+  a & b \\
+  c & d
+  \end{pmatrix}
+  $
+
+  <br><br>
+  
+  $
+  \ce{CO2 + C -> 2 CO}
+  $
+
+  <br><br>
+  $\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$
+  <br><br>
+
+  <div id="kagaku"></div>
+
 
 </body>
+
 </html>
