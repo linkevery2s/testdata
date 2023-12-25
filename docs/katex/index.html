@@ -3,8 +3,7 @@
 <title>芳香族マスター</title>
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-    <meta charset="UTF-8" name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta property="og:title" content="芳香族マスター" />
     <meta property="og:type" content="website" />
@@ -76,47 +75,36 @@
             z-index: 0;
         }
 
-        hr{
+        hr {
             margin-top: 1px;
             border: #ffffff;
         }
-
     </style>
 </head>
 
 <body>
     <h1>芳香族マスター</h1>
 
-    <div class="node" style="top: 100px; left: 10px;">シクロヘキサン, $\ce{C6H6}$
+    <div class="node" style="top: 100px; left: 10px;">シクロヘキサン, $\ce{C6H12}$
         <div>
             <script type="text/javascript">
 
                 let set_model = () => {
                     jmolInitialize(".");
-                    jmolApplet(180, "load data/1ea3.pdb; cartoon only; color cartoon structure;", "0");
-
+                    jmolApplet(180, "load data/cyclohexane.pdb;", "0");
                     jmolHtml("<hr>モデル ");
-                    jmolMenu([
-                        ["cartoon on; spacefill off; wireframe off", "Cartoon"],
-                        ["wireframe on; spacefill off; cartoon off", "Wireframe"],
-                        ["spacefill off; wireframe 40; cartoon off", 'Stick'],
-                        ["spacefill off; wireframe 80; cartoon off", 'Bold Stick'],
-                        ["spacefill 100%; wireframe off; cartoon off", "Spacefillng"]
-                    ]);
-
+                    jmolCheckbox("spacefill 100% on", "spacefill off; spacefill 20% on", 'Spacefill');
                     jmolHtml("&nbsp;");
                     jmolCheckbox("spin on", "spin off", '回転');
-
                 };
-
                 set_model();
 
             </script>
         </div>
-
     </div>
+
     <div class="node" style="top: 400px; left: 450px;">ベンゼン, $\ce{C6H6}$</div>
-    <div class="node" style="top: 400px; left: 10px;">アセチレン, $\ce{C2H2}$</div>
+    <div class="node" style="top: 400px; left: 10px;">アセチレン, $\ce{CH\bond{3}CH}$</div>
 
     <div class="link" style="top: 335px; left: 240px; width: 300px; transform-origin: 0% 0%; transform: rotate(35deg);">
     </div>
