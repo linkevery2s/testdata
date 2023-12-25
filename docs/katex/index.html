@@ -1,91 +1,138 @@
 <!DOCTYPE HTML>
 <html lang="ja">
-<title>katex test</title>
+<title>芳香族マスター</title>
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-  <meta charset="UTF-8" name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-    integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <meta charset="UTF-8" name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:title" content="芳香族マスター" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./ogp.png" />
+    <meta name="description" content="高校の化学で学習する「芳香族」の主な反応図をノード・リンク図にて、可視化しました。覚える内容が多いですが、まとめて覚えてしまいましょう。" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="芳香族マスター" />
+    <meta name="twitter:image" content="./ogp.png" />
+    <meta name="author" content="仁志">
+    <meta name="keywords" content="芳香族,ベンゼン,化学,ノードリンク図,node,link" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="icon" href="images/apple-touch-icon.png">
 
-  <!-- The loading of KaTeX is deferred to speed up page rendering -->
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
-    integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
-    crossorigin="anonymous"></script>
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+        integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
 
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"
-    integrity="sha384-ifpG+NlgMq0kvOSGqGQxW1mJKpjjMDmZdpKGq3tbvD3WPhyshCEEYClriK/wRVU0"
-    crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+        integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
+        crossorigin="anonymous"></script>
 
-  <!-- To automatically render math in text elements, include the auto-render extension: -->
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
-    crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"
+        integrity="sha384-ifpG+NlgMq0kvOSGqGQxW1mJKpjjMDmZdpKGq3tbvD3WPhyshCEEYClriK/wRVU0"
+        crossorigin="anonymous"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+        crossorigin="anonymous"></script>
 
     <!-- $などで囲うために必要 -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      renderMathInElement(document.body, {
-        delimiters: [
-          { left: "\\[", right: "\\]", display: true },
-          { left: "$", right: "$", display: false }
-        ]
-      });
-    });
-  </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false }
+                ]
+            });
+        });
+    </script>
 
-  <script src="test.json"></script>
-  <script>
+    <!-- jsmol -->
+    <script src="./jmol/jsmol/JSmol.min.js"></script>
+    <script src="./jmol/jsmol/js/Jmol2.js"></script>
 
-    window.onload = () => {
+    <style>
+        .node {
+            width: 250px;
+            height: 250px;
+            border: 2px solid #3498db;
+            background-color: #ffffff;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            z-index: 1;
+            margin: 0 auto;
+        }
 
-      let element = document.querySelector(".katex");
+        .node div {
+            position: absolute;
+            top: 20px;
+            left: 17px;
+        }
 
-      console.log(data[0].math);
+        .link {
+            position: absolute;
+            background-color: #ccc;
+            height: 2px;
+            z-index: 0;
+        }
 
-      // katex.render(data[0].math, element, { throwOnError: false });
+        hr{
+            margin-top: 1px;
+            border: #ffffff;
+        }
 
-      katex.render("c = \\pm\\sqrt{a^2 + b^2}", element, { throwOnError: false });
-
-      let ele = document.querySelector("#kagaku");
-
-      katex.render("\\ce{CO2 + C -> 2 CO}", ele, { throwOnError: false });
-
-      // katex.render("\\ce{" + "CO2 + C -> 2 CO" + "}", ele, { throwOnError: false });
-
-    };
-
-  </script>
-
+    </style>
 </head>
 
 <body>
+    <h1>芳香族マスター</h1>
 
-  <span class="katex"></span>
+    <div class="node" style="top: 100px; left: 10px;">シクロヘキサン, $\ce{C6H6}$
+        <div>
+            <script type="text/javascript">
 
-  <br><br>
+                let set_model = () => {
+                    jmolInitialize(".");
+                    jmolApplet(180, "load data/1ea3.pdb; cartoon only; color cartoon structure;", "0");
 
-  $
-  \begin{pmatrix}
-  a & b \\
-  c & d
-  \end{pmatrix}
-  $
+                    jmolHtml("<hr>モデル ");
+                    jmolMenu([
+                        ["cartoon on; spacefill off; wireframe off", "Cartoon"],
+                        ["wireframe on; spacefill off; cartoon off", "Wireframe"],
+                        ["spacefill off; wireframe 40; cartoon off", 'Stick'],
+                        ["spacefill off; wireframe 80; cartoon off", 'Bold Stick'],
+                        ["spacefill 100%; wireframe off; cartoon off", "Spacefillng"]
+                    ]);
 
-  <br><br>
-  
-  $
-  \ce{CO2 + C -> 2 CO}
-  $
+                    jmolHtml("&nbsp;");
+                    jmolCheckbox("spin on", "spin off", '回転');
 
-  <br><br>
-  $\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$
-  <br><br>
+                };
 
-  <div id="kagaku"></div>
+                set_model();
+
+            </script>
+        </div>
+
+    </div>
+    <div class="node" style="top: 400px; left: 450px;">ベンゼン, $\ce{C6H6}$</div>
+    <div class="node" style="top: 400px; left: 10px;">アセチレン, $\ce{C2H2}$</div>
+
+    <div class="link" style="top: 335px; left: 240px; width: 300px; transform-origin: 0% 0%; transform: rotate(35deg);">
+    </div>
+
+    <div class="link" style="top: 525px; left: 240px; width: 300px;"></div>
 
 
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPP84V2NHB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MPP84V2NHB');
+    </script>
 </body>
 
 </html>
