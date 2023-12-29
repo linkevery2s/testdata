@@ -1,0 +1,10 @@
+COMPND    MOL_ID: 1;                                                            
+COMPND   2 MOLECULE: Acetylene (CH=-CH);                                        
+ATOM      1  C1  UNK     0      -0.605   0.000   0.000
+ATOM      2  C2  UNK     0       0.605   0.000   0.000
+ATOM      3  H3  UNK     0       1.695   0.000   0.000
+ATOM      4  H4  UNK     0      -1.695   0.000   0.000
+CONECT    1    2    4
+CONECT    2    3    1
+CONECT    3    2
+CONECT    4    1

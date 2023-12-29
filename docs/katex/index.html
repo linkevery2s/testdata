@@ -49,10 +49,19 @@
     <script src="./jmol/jsmol/JSmol.min.js"></script>
     <script src="./jmol/jsmol/js/Jmol2.js"></script>
 
+    <script type="module">
+
+        document.getElementById("cyclohexane").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!cyclohexane" border="0"></iframe>'
+        document.getElementById("benzene").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!benzene" border="0"></iframe>'
+        document.getElementById("acetylene").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!acetylene" border="0"></iframe>'
+
+
+    </script>
+
     <style>
         .node {
             width: 250px;
-            height: 250px;
+            height: 265px;
             border: 2px solid #3498db;
             background-color: #ffffff;
             text-align: center;
@@ -64,8 +73,8 @@
 
         .node div {
             position: absolute;
-            top: 20px;
-            left: 17px;
+            top: 37px;
+            left: 26px;
         }
 
         .link {
@@ -75,9 +84,10 @@
             z-index: 0;
         }
 
-        hr {
-            margin-top: 1px;
-            border: #ffffff;
+        iframe {
+            margin: 0;
+            padding: 0;
+            border: none;
         }
     </style>
 </head>
@@ -85,32 +95,30 @@
 <body>
     <h1>芳香族マスター</h1>
 
+    <!-- aromatic -->
     <div class="node" style="top: 100px; left: 10px;">シクロヘキサン, $\ce{C6H12}$
-        <div>
-            <script type="text/javascript">
-
-                let set_model = () => {
-                    jmolInitialize(".");
-                    jmolApplet(180, "load data/cyclohexane.pdb;", "0");
-                    jmolHtml("<hr>モデル ");
-                    jmolCheckbox("spacefill 100% on", "spacefill off; spacefill 20% on", 'Spacefill');
-                    jmolHtml("&nbsp;");
-                    jmolCheckbox("spin on", "spin off", '回転');
-                };
-                set_model();
-
-            </script>
+        <div id="cyclohexane">
         </div>
     </div>
 
-    <div class="node" style="top: 400px; left: 450px;">ベンゼン, $\ce{C6H6}$</div>
-    <div class="node" style="top: 400px; left: 10px;">アセチレン, $\ce{CH\bond{3}CH}$</div>
-
-    <div class="link" style="top: 335px; left: 240px; width: 300px; transform-origin: 0% 0%; transform: rotate(35deg);">
+    <div class="node" style="top: 420px; left: 450px;">ベンゼン, $\ce{C6H6}$
+        <div id="benzene">
+        </div>
     </div>
 
-    <div class="link" style="top: 525px; left: 240px; width: 300px;"></div>
+    <div class="node" style="top: 420px; left: 10px;">アセチレン, $\ce{CH\bond{3}CH}$
+        <div id="acetylene">
+        </div>
+    </div>
+    <!-- aromatic -->
 
+
+    <!-- link -->
+    <div class="link" style="top: 347px; left: 240px; width: 300px; transform-origin: 0% 0%; transform: rotate(40deg);">
+    </div>
+
+    <div class="link" style="top: 550px; left: 240px; width: 300px;"></div>
+    <!-- link -->
 
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPP84V2NHB"></script>

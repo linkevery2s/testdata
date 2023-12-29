@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<title>芳香族マスター</title>
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="仁志">
+
+    <!-- jsmol -->
+    <script src="./jmol/jsmol/JSmol.min.js"></script>
+    <script src="./jmol/jsmol/js/Jmol2.js"></script>
+
+    <style>
+        body,
+        html,
+        #pdb {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        hr {
+            margin-top: 1px;
+            border: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="pdb">
+        <script type="text/javascript">
+
+            const hash = location.hash;
+
+            const hash1 = hash.split("!");
+
+            let name = hash1[1];
+            console.log(name);
+
+                jmolInitialize(".");
+                jmolApplet("195px", "load data/" + name + ".pdb;", "0");
+                jmolHtml("<hr>モデル ");
+                jmolCheckbox("spacefill 100% on", "spacefill off; spacefill 20% on", 'Spacefill');
+                jmolHtml("&nbsp;");
+                jmolCheckbox("spin on", "spin off", '回転');
+
+
+        </script>
+    </div>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPP84V2NHB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MPP84V2NHB');
+    </script>
+</body>
+
+</html>
