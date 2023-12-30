@@ -49,19 +49,28 @@
     <script src="./jmol/jsmol/JSmol.min.js"></script>
     <script src="./jmol/jsmol/js/Jmol2.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
     <script type="module">
 
         document.getElementById("cyclohexane").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!cyclohexane" border="0"></iframe>'
         document.getElementById("benzene").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!benzene" border="0"></iframe>'
         document.getElementById("acetylene").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!acetylene" border="0"></iframe>'
 
+        /* ツールチップ */
+        window.tooltip = x => {
+
+            $("#" + x).slideToggle(500);
+
+        }
 
     </script>
 
     <style>
         .node {
             width: 250px;
-            height: 265px;
+            height: 280px;
             border: 2px solid #3498db;
             background-color: #ffffff;
             text-align: center;
@@ -73,7 +82,7 @@
 
         .node div {
             position: absolute;
-            top: 37px;
+            top: 38px;
             left: 26px;
         }
 
@@ -84,10 +93,45 @@
             z-index: 0;
         }
 
+        .feature {
+            position: absolute;
+            background: #3498db;
+            color: #ffffff;
+            padding: 3px 5px 3px 5px;
+            cursor: pointer;
+        }
+
         iframe {
             margin: 0;
             padding: 0;
             border: none;
+        }
+
+        .tooltip {
+            width: 200px;
+            padding: 5px;
+            font-size: 12px;
+            margin: -30px 0 0;
+            background-color: #f8e58c;
+            color: #000;
+            position: absolute;
+            right: -220px;
+            top: 30px;
+            display: none;
+        }
+
+        .tooltip:before {
+            right: 100%;
+            top: 30px;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            border-color: rgba(102, 102, 102, 0);
+            border-right-color: #f8e58c;
+            border-width: 8px;
+            margin-top: -8px;
         }
     </style>
 </head>
@@ -96,17 +140,23 @@
     <h1>芳香族マスター</h1>
 
     <!-- aromatic -->
+    <div class="feature" style="top: 65px;left: 205px;" onclick="tooltip(1);">性　質</div>
     <div class="node" style="top: 100px; left: 10px;">シクロヘキサン, $\ce{C6H12}$
+        <p class="tooltip" id="1">テキストボックス1のツールチップ</p>
         <div id="cyclohexane">
         </div>
     </div>
 
-    <div class="node" style="top: 420px; left: 450px;">ベンゼン, $\ce{C6H6}$
+    <div class="feature" style="top: 405px;left: 645px;" onclick="tooltip(2);">性　質</div>
+    <div class="node" style="top: 440px; left: 450px;">ベンゼン, $\ce{C6H6}$
+        <p class="tooltip" id="2">テキストボックス2のツールチップ</p>
         <div id="benzene">
         </div>
     </div>
 
-    <div class="node" style="top: 420px; left: 10px;">アセチレン, $\ce{CH\bond{3}CH}$
+    <div class="feature" style="top: 405px;left: 205px;" onclick="tooltip(3);">性　質</div>
+    <div class="node" style="top: 440px; left: 10px;">アセチレン, $\ce{CH\bond{3}CH}$
+        <p class="tooltip" id="3">テキストボックス3のツールチップ</p>
         <div id="acetylene">
         </div>
     </div>
@@ -114,10 +164,10 @@
 
 
     <!-- link -->
-    <div class="link" style="top: 347px; left: 240px; width: 300px; transform-origin: 0% 0%; transform: rotate(40deg);">
+    <div class="link" style="top: 361px; left: 240px; width: 300px; transform-origin: 0% 0%; transform: rotate(40deg);">
     </div>
 
-    <div class="link" style="top: 550px; left: 240px; width: 300px;"></div>
+    <div class="link" style="top: 580px; left: 240px; width: 300px;"></div>
     <!-- link -->
 
 
