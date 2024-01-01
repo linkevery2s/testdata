@@ -17,7 +17,7 @@
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="icon" href="images/apple-touch-icon.png">
 
-    <!-- katex -->
+    <!-- Katex -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
         integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
 
@@ -45,10 +45,11 @@
         });
     </script>
 
-    <!-- jsmol -->
-    <script src="./jmol/jsmol/JSmol.min.js"></script>
-    <script src="./jmol/jsmol/js/Jmol2.js"></script>
+    <!-- FontAwesome -->
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
 
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
@@ -68,10 +69,25 @@
     </script>
 
     <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-family: "Meiryo", "Hiragino Maru Gothic Pro", sans-serif;
+        }
+
+        h1 {
+            margin: 10px 0 0 10px;
+            padding: 0;
+        }
+
         .node {
             width: 250px;
             height: 280px;
-            border: 2px solid #3498db;
+            border: 2px solid #1e50a2;
             background-color: #ffffff;
             text-align: center;
             line-height: 50px;
@@ -95,10 +111,25 @@
 
         .feature {
             position: absolute;
-            background: #3498db;
+            background: #1e50a2;
             color: #ffffff;
             padding: 3px 5px 3px 5px;
             cursor: pointer;
+        }
+
+        .feature::before {
+            font-family: "Font Awesome 5 Free";
+            content: '\f0c3';
+            font-weight: 900;
+            padding-right: 5px;
+
+        }
+
+        .feature::after{
+            font-family: "Font Awesome 5 Free";
+            content: '\f492';
+            font-weight: 900;
+            padding-left: 5px;
         }
 
         iframe {
@@ -140,21 +171,21 @@
     <h1>芳香族マスター</h1>
 
     <!-- aromatic -->
-    <div class="feature" style="top: 65px;left: 205px;" onclick="tooltip(1);">性　質</div>
+    <div class="feature" style="top: 65px;left: 167px;" onclick="tooltip(1);">性　質</div>
     <div class="node" style="top: 100px; left: 10px;">シクロヘキサン, $\ce{C6H12}$
         <p class="tooltip" id="1">テキストボックス1のツールチップ</p>
         <div id="cyclohexane">
         </div>
     </div>
 
-    <div class="feature" style="top: 405px;left: 645px;" onclick="tooltip(2);">性　質</div>
-    <div class="node" style="top: 440px; left: 450px;">ベンゼン, $\ce{C6H6}$
+    <div class="feature" style="top: 405px;left: 657px;" onclick="tooltip(2);">性　質</div>
+    <div class="node" style="top: 440px; left: 500px;">ベンゼン, $\ce{C6H6}$
         <p class="tooltip" id="2">テキストボックス2のツールチップ</p>
         <div id="benzene">
         </div>
     </div>
 
-    <div class="feature" style="top: 405px;left: 205px;" onclick="tooltip(3);">性　質</div>
+    <div class="feature" style="top: 405px;left: 167px;" onclick="tooltip(3);">性　質</div>
     <div class="node" style="top: 440px; left: 10px;">アセチレン, $\ce{CH\bond{3}CH}$
         <p class="tooltip" id="3">テキストボックス3のツールチップ</p>
         <div id="acetylene">
@@ -164,7 +195,7 @@
 
 
     <!-- link -->
-    <div class="link" style="top: 361px; left: 240px; width: 300px; transform-origin: 0% 0%; transform: rotate(40deg);">
+    <div class="link" style="top: 365px; left: 240px; width: 350px; transform-origin: 0% 0%; transform: rotate(35deg);">
     </div>
 
     <div class="link" style="top: 580px; left: 240px; width: 300px;"></div>
