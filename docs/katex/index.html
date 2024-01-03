@@ -72,190 +72,69 @@
 
         }
 
+        window.abstract = () =>{
+
+            $("#abs").slideToggle(500);
+
+        }
+
     </script>
 
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            font-family: "Meiryo", "Hiragino Maru Gothic Pro", sans-serif;
-        }
-
-        h1 {
-            margin: 10px 0 0 10px;
-            padding: 0;
-        }
-
-        .node {
-            width: 250px;
-            height: 280px;
-            border: 2px solid #1e50a2;
-            background-color: #ffffff;
-            text-align: center;
-            line-height: 50px;
-            position: absolute;
-            z-index: 1;
-            margin: 0 auto;
-        }
-
-        .node div {
-            position: absolute;
-            top: 38px;
-            left: 26px;
-        }
-
-        .link {
-            position: absolute;
-            background-color: #ccc;
-            height: 2px;
-            z-index: 0;
-        }
-
-        .link_abstract {
-            position: absolute;
-        }
-
-        .arrow_left::before {
-            font-family: "Font Awesome 5 Free";
-            content: '\f060';
-            font-weight: 900;
-        }
-
-        .arrow_left {
-            position: absolute;
-            color: #ccc;
-        }
-
-        .reaction {
-            position: absolute;
-            background: #006e54;
-            padding: 3px 5px 3px 5px;
-            color: #ffffff;
-            cursor: pointer;
-        }
-
-        .reaction::after {
-            font-family: "Font Awesome 5 Free";
-            content: '\f0c1';
-            font-weight: 900;
-            padding-left: 5px;
-        }
-
-        .feature {
-            position: absolute;
-            background: #1e50a2;
-            color: #ffffff;
-            padding: 3px 5px 3px 5px;
-            cursor: pointer;
-        }
-
-        .feature::before {
-            font-family: "Font Awesome 5 Free";
-            content: '\f0c3';
-            font-weight: 900;
-            padding-right: 5px;
-
-        }
-
-        .feature::after {
-            font-family: "Font Awesome 5 Free";
-            content: '\f492';
-            font-weight: 900;
-            padding-left: 5px;
-        }
-
-        iframe {
-            margin: 0;
-            padding: 0;
-            border: none;
-        }
-
-        .tooltip {
-            width: 250px;
-            padding: 5px;
-            margin: -30px 0 0;
-            background-color: #f8e58c;
-            color: #000;
-            position: absolute;
-            right: -270px;
-            top: 30px;
-            display: none;
-            z-index: 10;
-        }
-
-        .tooltip:before {
-            right: 100%;
-            top: 30px;
-            border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            position: absolute;
-            border-color: rgba(102, 102, 102, 0);
-            border-right-color: #f8e58c;
-            border-width: 8px;
-            margin-top: -8px;
-        }
-
-        .reaction_tip {
-            max-width: 200px;
-            padding: 10px;
-            margin: 0;
-            background-color: #f8e58c;
-            color: #000;
-            position: absolute;
-            right: -220px;
-            top: 0;
-            display: none;
-            z-index: 10;
-        }
-    </style>
+    <link rel="stylesheet" href="./main.css">
 </head>
 
 <body>
     <h1>芳香族マスター</h1>
 
-    <!-- aromatic -->
-    <div class="feature" style="top: 65px;left: 167px;" onclick="tooltip(1);">性　質</div>
-    <div class="node" style="top: 100px; left: 10px;">シクロヘキサン, $\ce{C6H12}$
-        <p class="tooltip" id="1">テキストボックス1のツールチップ</p>
-        <div id="cyclohexane">
+    <div class="first" onclick="abstract();">はじめに</div>
+
+    <div class="abstract" id="abs">高校の化学で学習する「芳香族化合物」。ベンゼンを初めに、化合物名、反応式、付加反応・置換反応、スルホン化などの反応名と覚える項目が多く、悩む学生さん達が多いと思います。このノード・リンク図は、そんな芳香族をまとめて覚えてしまおう！という名目のもと、開発しました。多くの方々にご覧いただければ幸いです。</div>
+
+    <div class="container">
+
+        <!-- aromatic -->
+        <div class="feature top15 left167" onclick="tooltip(1);">性　質</div>
+        <div class="node top50 left10">シクロヘキサン, $\ce{C6H12}$
+            <p class="tooltip" id="1">テキストボックス1のツールチップ</p>
+            <div id="cyclohexane">
+            </div>
         </div>
-    </div>
 
-    <div class="feature" style="top: 405px;left: 657px;" onclick="tooltip(2);">性　質</div>
-    <div class="node" style="top: 440px; left: 500px;">ベンゼン, $\ce{C6H6}$
-        <p class="tooltip" id="2">テキストボックス2のツールチップ</p>
-        <div id="benzene">
+        <div class="feature top365 left167" onclick="tooltip(3);">性　質</div>
+        <div class="node top400 left10">アセチレン, $\ce{CH\bond{3}CH}$
+            <p class="tooltip" id="3">テキストボックス3のツールチップ</p>
+            <div id="acetylene">
+            </div>
         </div>
-    </div>
 
-    <div class="feature" style="top: 405px;left: 167px;" onclick="tooltip(3);">性　質</div>
-    <div class="node" style="top: 440px; left: 10px;">アセチレン, $\ce{CH\bond{3}CH}$
-        <p class="tooltip" id="3">テキストボックス3のツールチップ</p>
-        <div id="acetylene">
+        <div class="feature top365 left687" onclick="tooltip(2);">性　質</div>
+        <div class="node top400 left530">ベンゼン, $\ce{C6H6}$
+            <p class="tooltip" id="2">テキストボックス2のツールチップ</p>
+            <div id="benzene">
+            </div>
         </div>
-    </div>
-    <!-- aromatic -->
 
 
-    <!-- link -->
-    <div class="link" style="top: 365px; left: 240px; width: 350px; transform-origin: 0% 0%; transform: rotate(35deg);">
-    </div>
-    <div class="arrow_left"
-        style="top: 387px; left: 290px; width: 350px; transform-origin: 0% 0%; transform: rotate(35deg);"></div>
-    <div class="link_abstract" style="top: 420px; left: 350px;">$\ce{H2・Ni}$ 触媒</div>
-    <div class="link_abstract" style="top: 450px; left: 395px;">付加反応</div>
-    <div class="reaction" style="top: 485px; left: 310px;" onclick="reaction_tip(1);">反応式
-        <p class="reaction_tip" id="reaction1">$\ce{ C6H6 + 3H2 -> C6H12 }$</p>
-    </div>
+        <!-- aromatic -->
 
-    <div class="link" style="top: 580px; left: 240px; width: 300px;"></div>
-    <!-- link -->
+        <!-- link -->
+        <div class="link top315 left240"
+            style="transform-origin: 0% 0%; transform: rotate(35deg);">
+        </div>
+        <div class="arrow_left"
+            style="top: 337px; left: 290px; width: 350px; transform-origin: 0% 0%; transform: rotate(35deg);"></div>
+
+        <div class="link_abstract" style="top: 370px; left: 350px;">$\ce{H2・Ni}$ 触媒</div>
+        <div class="link_abstract" style="top: 400px; left: 395px;">付加反応</div>
+
+        <div class="reaction" style="top: 435px; left: 310px;" onclick="reaction_tip(1);">反応式
+            <p class="reaction_tip" id="reaction1">$\ce{ C6H6 + 3H2 -> C6H12 }$</p>
+        </div>
+
+        <div class="link top540 left240"></div>
+        <!-- link -->
+
+    </div><!-- container -->
 
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPP84V2NHB"></script>

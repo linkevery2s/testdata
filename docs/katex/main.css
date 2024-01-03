@@ -1,0 +1,222 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: "Meiryo", "Hiragino Maru Gothic Pro", sans-serif;
+}
+
+h1 {
+    margin: 10px 0 0 10px;
+    padding: 0;
+}
+
+.first{
+    position: absolute;
+    top: 70px;
+    left: 10px;
+    background-color: #1e50a2;
+    color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.first::after{
+    font-family: "Font Awesome 5 Free";
+    content: ' \f0da';
+    font-weight: 900;  
+}
+
+.abstract{
+    display: none;
+    width: 500px;
+    position: absolute;
+    top: 70px;
+    left: 100px;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 2px solid #89c3eb;
+    color: #000;
+    font-size: 15px;
+    z-index: 100;
+}
+
+.container{
+    position: relative;
+    top: 45px;
+    padding: 0;
+    margin: 0;
+}
+
+.node {
+    width: 250px;
+    height: 280px;
+    border: 2px solid #1e50a2;
+    background-color: #ffffff;
+    text-align: center;
+    line-height: 50px;
+    position: absolute;
+    z-index: 5;
+    margin: 0 auto;
+}
+
+.node div {
+    position: absolute;
+    top: 38px;
+    left: 26px;
+    z-index: 5;
+}
+
+.top15{
+    top: 15px;
+}
+.top50{
+    top: 50px;
+}
+
+.top315{
+    top: 315px;
+}
+
+.top365{
+    top: 365px;
+}
+
+.top400{
+    top: 400px;
+}
+
+.top540{
+    top: 540px;
+}
+
+.left10{
+    left: 10px;
+}
+
+.left167{
+    left: 167px;
+}
+
+.left240{
+    left: 240px;
+}
+
+.left530{
+    left: 530px;
+}
+
+.left687{
+    left: 687px;
+}
+
+.link {
+    position: absolute;
+    background-color: #ccc;
+    width: 400px;
+    height: 2px;
+    z-index: 0;
+}
+
+.link_abstract {
+    position: absolute;
+    z-index: 0;
+}
+
+.arrow_left::before {
+    font-family: "Font Awesome 5 Free";
+    content: '\f053';
+    font-weight: 900;
+}
+
+.arrow_left {
+    position: absolute;
+    color: #ccc;
+}
+
+.reaction {
+    position: absolute;
+    background: #006e54;
+    padding: 3px 5px 3px 5px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.reaction::after {
+    font-family: "Font Awesome 5 Free";
+    content: '\f0c1';
+    font-weight: 900;
+    padding-left: 5px;
+}
+
+.feature {
+    position: absolute;
+    background: #1e50a2;
+    color: #ffffff;
+    padding: 3px 5px 3px 5px;
+    cursor: pointer;
+}
+
+.feature::before {
+    font-family: "Font Awesome 5 Free";
+    content: '\f0c3';
+    font-weight: 900;
+    padding-right: 5px;
+
+}
+
+.feature::after {
+    font-family: "Font Awesome 5 Free";
+    content: '\f492';
+    font-weight: 900;
+    padding-left: 5px;
+}
+
+iframe {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.tooltip {
+    width: 250px;
+    padding: 5px;
+    margin: -30px 0 0;
+    background-color: #fef263;
+    color: #000;
+    font-size: 12px;
+    position: absolute;
+    right: -270px;
+    top: 30px;
+    display: none;
+    z-index: 1000;
+}
+
+.tooltip:before {
+    right: 100%;
+    top: 30px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    border-color: rgba(102, 102, 102, 0);
+    border-right-color: #fef263;
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+.reaction_tip {
+    max-width: 200px;
+    padding: 10px;
+    margin: 0;
+    background-color: #fef263;
+    color: #000;
+    position: absolute;
+    left: 5px;
+    top: 40px;
+    display: none;
+    z-index: 100;
+}
