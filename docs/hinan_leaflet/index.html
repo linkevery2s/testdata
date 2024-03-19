@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>deck-gl.leaflet</title>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <script src="https://unpkg.com/deck.gl@8.6.0/dist.min.js"></script>
+    <script src="https://unpkg.com/deck.gl-leaflet@1.2.1/dist/deck.gl-leaflet.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+        }
+
+        #map {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script type="module">
+
+        const map = L.map("map", {
+            center: [36, 137],
+            zoom: 13,
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
+
+        map.setView([36, 137], 8);
+
+        const tooltip = (d) => {
+
+            if (!d || !d.object) return null;
+            let obj = d.object;
+
+            const html_tr = ["<table>", obj.Name, "</table>"].join("\n");
+
+            return {
+                html: html_tr,
+                style: {
+                    background: "rgba(0,0,0,0.7)",
+                    color: "#ffffff",
+                    width: "180px"
+                }
+            };
+        };
+
+        const deckLayer = new DeckGlLeaflet.LeafletLayer({
+            views: [
+                new deck.MapView({
+                    repeat: true
+                })
+            ],
+            layers: [
+                new deck.ScatterplotLayer({
+                    id: 'scatterplot-layer',
+                    data: './test.json',
+                    pickable: true,
+                    opacity: 0.7,
+                    stroked: true,
+                    filled: true,
+                    radiusScale: 6,
+                    radiusMinPixels: 5,
+                    radiusMaxPixels: 5,
+                    lineWidthMinPixels: 1,
+                    getPosition: d => [Number(d.lon), Number(d.lat)],
+                    getRadius: d => 5,
+                    getFillColor: d => [44, 169, 225],
+                    getLineColor: d => [255, 255, 255]
+                })
+            ],
+
+            getTooltip: tooltip
+        });
+        map.addLayer(deckLayer);
+
+    </script>
+</body>
+
+</html>
